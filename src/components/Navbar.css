@@ -1,0 +1,151 @@
+.navbar-header {
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.top-bar {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.top-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+}
+
+.top-actions .btn-outline {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.top-actions .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.top-actions .btn-primary {
+  background-color: var(--accent);
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.top-actions .btn-primary:hover {
+  background-color: #D97706;
+  color: white;
+}
+
+.main-nav {
+  padding: 1rem 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  background-color: var(--primary);
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none; /* Hide on mobile for now, implement hamburger menu later */
+  }
+}

@@ -1,0 +1,11 @@
+.schedule-card { padding: 3rem; max-width: 700px; margin: 0 auto; }
+.schedule-list { display: flex; flex-direction: column; }
+.schedule-item { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px dashed var(--border-color); }
+.schedule-item:last-child { border-bottom: none; }
+.schedule-time { font-weight: 700; color: var(--primary); min-width: 100px; font-family: var(--font-body); font-size: 0.9rem; }
+.schedule-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.schedule-activity { font-size: 1.05rem; color: var(--text-main); }
+
+.academic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.academic-card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+.academic-card p { color: var(--text-muted); font-size: 0.95rem; }

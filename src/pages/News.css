@@ -1,0 +1,6 @@
+.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+.news-card h3 { margin: 0.75rem 0 0.5rem; color: var(--primary); font-size: 1.25rem; }
+.news-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+.news-meta { display: flex; justify-content: space-between; align-items: center; }
+.news-date { font-size: 0.8rem; color: var(--text-muted); }
+.read-more { font-weight: 600; color: var(--primary-light); }

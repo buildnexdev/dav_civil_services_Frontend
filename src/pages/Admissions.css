@@ -1,0 +1,22 @@
+.admissions-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; }
+.admissions-info { display: flex; flex-direction: column; gap: 2rem; }
+.info-card h2 { color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem; }
+.info-card ul, .info-card ol { padding-left: 1.25rem; }
+.info-card li { margin-bottom: 0.5rem; color: var(--text-muted); line-height: 1.6; }
+.info-card ol { list-style: decimal; }
+.info-card ul { list-style: disc; }
+.note { margin-top: 1rem; font-size: 0.85rem; color: var(--accent); font-style: italic; }
+
+.admissions-cta-panel { display: flex; flex-direction: column; gap: 2rem; position: sticky; top: 140px; align-self: flex-start; }
+.cta-card { text-align: center; border: 2px solid var(--primary-lighter); }
+.cta-card h2 { color: var(--primary); margin-bottom: 1rem; }
+.cta-card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+.cta-divider { text-align: center; color: var(--text-muted); margin: 1rem 0; font-size: 0.875rem; }
+
+.faq-card h2 { color: var(--primary); margin-bottom: 1.5rem; }
+.faq-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); }
+.faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.faq-q { font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem; }
+.faq-a { color: var(--text-muted); font-size: 0.9rem; }
+
+@media (max-width: 768px) { .admissions-grid { grid-template-columns: 1fr; } .admissions-cta-panel { position: static; } }

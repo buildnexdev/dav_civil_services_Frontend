@@ -1,0 +1,12 @@
+.track-form-card, .track-result-card { max-width: 600px; margin: 0 auto; padding: 3rem; }
+.track-form-card h2, .track-result-card h2 { color: var(--primary); margin-bottom: 2rem; }
+
+.timeline { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+.timeline-step { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.5rem 0; position: relative; }
+.timeline-step:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 50px; width: 2px; height: calc(100% - 30px); background: var(--border-color); }
+.timeline-step.completed:not(:last-child)::after { background: var(--success); }
+.tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--border-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; z-index: 1; }
+.timeline-step.completed .tl-dot { background: var(--success); color: white; }
+.timeline-step.current .tl-dot { background: var(--primary); color: white; box-shadow: 0 0 0 4px var(--primary-lighter); }
+.tl-title { font-weight: 700; color: var(--text-main); }
+.tl-date { font-size: 0.8rem; color: var(--success); }

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  /* Premium Educational Theme Colors */
+  --bg-color: #FFFFFF;
+  --bg-soft: #F8FAFC; /* Soft gray */
+  --bg-card: #FFFFFF;
+  
+  --primary: #1E3A8A; /* Navy / Deep Blue */
+  --primary-light: #2563EB; /* Royal Blue */
+  --primary-lighter: #DBEAFE; /* Sky Blue background */
+  
+  --accent: #F59E0B; /* Orange/Gold accent */
+  --accent-light: #FEF3C7;
+  
+  --success: #10B981; /* Green for success */
+  --danger: #EF4444; /* Red for alerts */
+  
+  --text-main: #1E293B; /* Slate 800 */
+  --text-muted: #64748B; /* Slate 500 */
+  --border-color: #E2E8F0;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif; /* Gives an institutional, premium feel */
+  --font-body: 'Inter', sans-serif;
+  
+  /* Shadows & Borders */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-soft);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-light);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* UI Components */
+.section-padding {
+  padding: 5rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-lighter);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-accent:hover {
+  background-color: #D97706;
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-lighter);
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background-color: #D1FAE5;
+  color: var(--success);
+}
+
+.badge-primary {
+  background-color: var(--primary-lighter);
+  color: var(--primary-light);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Helper Classes */
+.text-center { text-align: center; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.w-100 { width: 100%; }

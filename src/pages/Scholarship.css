@@ -1,0 +1,7 @@
+.scholarship-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+.scholarship-card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+.sch-amount { font-size: 1.75rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); }
+.scholarship-card p { color: var(--text-muted); font-size: 0.95rem; }
+.sch-stats { display: flex; gap: 3rem; margin-top: 1rem; }
+.sch-stats > div { display: flex; flex-direction: column; }
+.stat-big { font-size: 2rem; font-weight: 700; color: var(--primary); font-family: var(--font-heading); }
