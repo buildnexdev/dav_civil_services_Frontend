@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import davLogo from '../assets/dav-group-logo.jpg';
 import vedritamLogo from '../assets/vedritam-logo.jpg';
+import programsData from '../data/programsData';
+import ProgramCard from '../components/programs/ProgramCard';
 import './Home.css';
 
 const Home = () => {
@@ -66,15 +68,19 @@ const Home = () => {
       <section className="programs-section section-padding">
         <div className="container">
           <h2 className="section-title">Programs Offered</h2>
+          <p className="programs-section-subtitle">
+            Structured residential programmes designed to prepare aspirants for leading civil services,
+            government and competitive examinations.
+          </p>
           <div className="programs-grid">
-            {['UPSC Civil Services', 'TNPSC Group I & II', 'SSC CGL', 'Indian Forest Service', 'CAPF', 'TNUSRB'].map((program) => (
-              <div className="card program-card" key={program}>
-                <div className="program-icon">◆</div>
-                <h3>{program}</h3>
-                <p>Comprehensive residential coaching with dedicated mentorship and test series.</p>
-                <Link to="/academics" className="program-link">Learn More →</Link>
-              </div>
+            {programsData.slice(0, 6).map((program, i) => (
+              <ProgramCard key={program.id} program={program} index={i} />
             ))}
+          </div>
+          <div className="programs-view-all">
+            <Link to="/programs" className="btn btn-outline btn-lg">
+              View All Programs →
+            </Link>
           </div>
         </div>
       </section>

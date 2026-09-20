@@ -11,6 +11,8 @@ import './App.css';
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Academics = lazy(() => import('./pages/Academics'));
+const Programs = lazy(() => import('./pages/Programs'));
+const ProgramDetail = lazy(() => import('./pages/ProgramDetail'));
 const Admissions = lazy(() => import('./pages/Admissions'));
 const ApplyOnline = lazy(() => import('./pages/ApplyOnline'));
 const TrackApplication = lazy(() => import('./pages/TrackApplication'));
@@ -81,6 +83,8 @@ const AppLayout = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/programs/:slug" element={<ProgramDetail />} />
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/admissions/apply" element={<ApplyOnline />} />
             <Route path="/admissions/track" element={<TrackApplication />} />

@@ -1,0 +1,156 @@
+/* ──────────────────────────────────────────────────────
+   Programs.css — Programs listing page
+   ────────────────────────────────────────────────────── */
+
+/* Hero */
+.programs-hero {
+  text-align: center;
+  padding-bottom: 3.5rem;
+}
+
+.programs-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+}
+
+.programs-hero .lead {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.programs-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+/* Subtitle below section title */
+.programs-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: -1.25rem auto 2.5rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+/* Listing section */
+.programs-listing-section {
+  background: var(--bg-color);
+}
+
+/* Residential CTA */
+.prc-content {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.prc-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.prc-content > p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.prc-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.prc-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 1.25rem 0.75rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prc-feature:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.prc-feature-icon {
+  font-size: 1.5rem;
+}
+
+.prc-feature-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+}
+
+/* Bottom CTA */
+.programs-bottom-cta {
+  background: var(--bg-hero);
+  color: white;
+}
+
+.programs-bottom-cta h2 {
+  color: white;
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.pbc-desc {
+  color: var(--text-on-dark-muted);
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin: 0 auto 1.75rem;
+}
+
+.pbc-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.programs-bottom-cta .btn-outline {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.programs-bottom-cta .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prc-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .prc-features {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .programs-hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
