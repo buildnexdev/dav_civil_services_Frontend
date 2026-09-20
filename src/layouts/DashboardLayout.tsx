@@ -10,7 +10,6 @@ const sidebarLinks = {
     { to: '/admin/admissions', label: 'Admissions', icon: '📋' },
     { to: '/admin/students', label: 'Students', icon: '👥' },
     { to: '/admin/faculty', label: 'Faculty', icon: '👨‍🏫' },
-    { to: '/admin/academics', label: 'Academics', icon: '📚' },
     { to: '/admin/attendance', label: 'Attendance', icon: '✅' },
     { to: '/admin/scholarships', label: 'Scholarships', icon: '🎓' },
     { to: '/admin/alumni', label: 'Alumni', icon: '🏆' },

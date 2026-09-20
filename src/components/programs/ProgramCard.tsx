@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Program } from '../../data/programsData';
+import { ZOHO_APPLY_URL } from '../../constants/links';
 import './ProgramCard.css';
 
 interface ProgramCardProps {
@@ -42,9 +43,9 @@ const ProgramCard = ({ program, index = 0 }: ProgramCardProps) => {
         <Link to={`/programs/${program.slug}`} className="pc-learn-more">
           Learn More <span className="pc-arrow">→</span>
         </Link>
-        <Link to="/admissions/apply" className="pc-apply">
+        <a href={ZOHO_APPLY_URL} target="_blank" rel="noopener noreferrer" className="pc-apply">
           Apply Now
-        </Link>
+        </a>
       </div>
     </div>
   );

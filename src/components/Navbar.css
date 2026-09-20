@@ -163,6 +163,123 @@
   width: 100%;
 }
 
+/* Dropdown Navigation */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  font-size: 0.65rem;
+  transition: transform var(--transition-fast);
+  line-height: 1;
+}
+
+.nav-dropdown:hover .dropdown-arrow,
+.nav-dropdown.is-open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 250px;
+  background-color: white;
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 12px 32px rgba(44, 27, 18, 0.16), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1050;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(4px);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--text-color, #2b2b2b);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-soft, #fdfbf7);
+  color: var(--primary, #2c1b12);
+  padding-left: 1.35rem;
+  border-left-color: var(--accent, #c5a059);
+}
+
+/* Mobile Hamburger Toggle Button */
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1100;
+}
+
+.hamburger-box {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.hamburger-inner,
+.hamburger-box::before,
+.hamburger-box::after {
+  content: '';
+  width: 24px;
+  height: 2.5px;
+  background-color: var(--primary, #2c1b12);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobile-menu-toggle.is-active .hamburger-box::before {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.mobile-menu-toggle.is-active .hamburger-inner {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.is-active .hamburger-box::after {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
 @media (max-width: 1100px) {
   .logo-text {
     display: none;
@@ -170,11 +287,52 @@
 }
 
 @media (max-width: 1024px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
   .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+    border-bottom: 2px solid var(--accent, #c5a059);
+    display: none;
+    z-index: 1080;
+    gap: 0.75rem;
+  }
+
+  .nav-links.is-mobile-open {
+    display: flex;
+  }
+
+  .nav-dropdown {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding-left: 1rem;
     display: none;
   }
 
-  .contact-info span:last-child,
+  .nav-dropdown.is-open .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-bar-email,
   .top-bar-divider {
     display: none;
   }
@@ -182,10 +340,14 @@
 
 @media (max-width: 480px) {
   .vedritam-logo {
-    height: 40px;
+    height: 38px;
   }
 
   .dav-logo {
-    height: 44px;
+    height: 42px;
+  }
+
+  .top-bar {
+    font-size: 0.75rem;
   }
 }

@@ -2,9 +2,14 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import programsData from '../data/programsData';
 import ProgramGrid from '../components/programs/ProgramGrid';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ZOHO_APPLY_URL } from '../constants/links';
 import './Programs.css';
 
 const Programs = () => {
+  const [resRef, resVis] = useScrollReveal();
+  const [ctaRef, ctaVis] = useScrollReveal();
+
   useEffect(() => {
     document.title = 'Programs Offered | DAV Civil Services Residential Program';
     const meta = document.querySelector('meta[name="description"]');
@@ -19,25 +24,6 @@ const Programs = () => {
 
   return (
     <div className="programs-page">
-      {/* ─── Hero ─────────────────────────────── */}
-      <section className="page-hero programs-hero">
-        <div className="container">
-          <span className="programs-hero-eyebrow">DAV Civil Services Residential Program</span>
-          <h1>Programs Offered</h1>
-          <p className="lead">
-            Structured residential programmes designed to prepare aspirants for leading civil services,
-            government and competitive examinations.
-          </p>
-          <div className="programs-hero-actions">
-            <Link to="/admissions/apply" className="btn btn-accent btn-lg">
-              Apply Now
-            </Link>
-            <Link to="/contact" className="btn btn-ghost btn-lg">
-              Speak to a Counsellor
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* ─── Program Grid ─────────────────────── */}
       <section className="section-padding programs-listing-section">
@@ -52,8 +38,8 @@ const Programs = () => {
       </section>
 
       {/* ─── Residential Highlight ────────────── */}
-      <section className="section-padding bg-soft programs-residential-cta">
-        <div className="container">
+      <section className="section-padding bg-soft programs-residential-cta" ref={resRef}>
+        <div className={`container sr ${resVis ? 'sr-visible' : ''}`}>
           <div className="prc-content">
             <h2>Why Residential Learning?</h2>
             <p>
@@ -61,7 +47,7 @@ const Programs = () => {
               disciplined academic routine, guided study hours, peer learning, regular assessments and
               continuous mentorship — creating an ecosystem designed for examination success.
             </p>
-            <div className="prc-features">
+            <div className={`prc-features sr-stagger ${resVis ? 'sr-visible' : ''}`}>
               {[
                 { icon: '🏠', label: 'Residential Accommodation' },
                 { icon: '📚', label: 'Guided Study Hours' },
@@ -72,7 +58,7 @@ const Programs = () => {
                 { icon: '📅', label: 'Academic Discipline' },
                 { icon: '💪', label: 'Student Support' },
               ].map((f) => (
-                <div className="prc-feature" key={f.label}>
+                <div className="prc-feature sr-child" key={f.label}>
                   <span className="prc-feature-icon">{f.icon}</span>
                   <span className="prc-feature-label">{f.label}</span>
                 </div>
@@ -83,16 +69,16 @@ const Programs = () => {
       </section>
 
       {/* ─── CTA ──────────────────────────────── */}
-      <section className="section-padding programs-bottom-cta">
-        <div className="container text-center">
+      <section className="section-padding programs-bottom-cta" ref={ctaRef}>
+        <div className={`container text-center sr-scale ${ctaVis ? 'sr-visible' : ''}`}>
           <h2>Ready to Begin Your Preparation?</h2>
           <p className="pbc-desc">
             Take the first step towards your civil services career. Apply now or speak to our admissions team for guidance.
           </p>
           <div className="pbc-actions">
-            <Link to="/admissions/apply" className="btn btn-accent btn-lg">
+            <a href={ZOHO_APPLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-accent btn-lg">
               Apply Now
-            </Link>
+            </a>
             <Link to="/admissions" className="btn btn-outline btn-lg">
               Admission Process
             </Link>

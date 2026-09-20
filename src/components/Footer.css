@@ -70,9 +70,46 @@
 }
 
 .footer-contact p {
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.footer-contact a {
+  color: #f7e3ba;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.developed-by {
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+}
+
+.dev-link {
+  color: var(--accent, #c5a059);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.dev-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 .social-links {

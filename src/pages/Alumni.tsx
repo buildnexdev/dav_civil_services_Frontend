@@ -15,7 +15,6 @@ const Alumni = () => {
 
   return (
     <div className="alumni-page">
-      <section className="page-hero"><div className="container"><h1>Alumni Corner</h1><p className="lead">Our Hall of Fame — celebrating the achievements of DAV Civil Services alumni.</p></div></section>
       
       <section className="section-padding">
         <div className="container">

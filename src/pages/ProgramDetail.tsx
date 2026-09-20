@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import programsData from '../data/programsData';
 import type { Program } from '../data/programsData';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ZOHO_APPLY_URL } from '../constants/links';
 import './ProgramDetail.css';
 
 const ProgramDetail = () => {
@@ -9,6 +11,19 @@ const ProgramDetail = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const program: Program | undefined = programsData.find((p) => p.slug === slug);
+
+  /* scroll-reveal refs for each section */
+  const [overviewRef, overviewVis] = useScrollReveal();
+  const [whyRef, whyVis] = useScrollReveal();
+  const [examRef, examVis] = useScrollReveal();
+  const [prepRef, prepVis] = useScrollReveal();
+  const [courseRef, courseVis] = useScrollReveal();
+  const [methodRef, methodVis] = useScrollReveal();
+  const [resRef, resVis] = useScrollReveal();
+  const [testRef, testVis] = useScrollReveal();
+  const [admRef, admVis] = useScrollReveal();
+  const [faqRef, faqVis] = useScrollReveal();
+  const [ctaRef, ctaVis] = useScrollReveal();
 
   useEffect(() => {
     if (program) {
@@ -37,28 +52,10 @@ const ProgramDetail = () => {
 
   return (
     <div className="program-detail-page">
-      {/* ─── 1. Hero ──────────────────────────────────── */}
-      <section className="pd-hero">
-        <div className="pd-hero-bg-glow" aria-hidden="true" />
-        <div className="container pd-hero-content">
-          <span className="pd-hero-category">{program.category}</span>
-          <h1 className="pd-hero-title">{program.name}</h1>
-          <p className="pd-hero-tagline">"{program.tagline}"</p>
-          <p className="pd-hero-desc">{program.overview.slice(0, 220)}…</p>
-          <div className="pd-hero-actions">
-            <Link to="/admissions/apply" className="btn btn-accent btn-lg">
-              Apply Now
-            </Link>
-            <a href="#programme-overview" className="btn btn-ghost btn-lg">
-              Explore Programme
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* ─── 2. Programme Overview ────────────────────── */}
-      <section className="section-padding" id="programme-overview">
-        <div className="container pd-section">
+      <section className="section-padding" id="programme-overview" ref={overviewRef}>
+        <div className={`container pd-section sr ${overviewVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title">Programme Overview</h2>
           <div className="pd-overview-card card">
             <p>{program.overview}</p>
@@ -67,12 +64,12 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 3. Why Choose ────────────────────────────── */}
-      <section className="section-padding bg-soft">
-        <div className="container pd-section">
-          <h2 className="section-title">Why Choose This Programme</h2>
+      <section className="section-padding bg-soft" ref={whyRef}>
+        <div className={`container pd-section sr-stagger ${whyVis ? 'sr-visible' : ''}`}>
+          <h2 className="section-title sr-child">Why Choose This Programme</h2>
           <div className="pd-features-grid">
             {program.whyChoose.map((f, i) => (
-              <div className="pd-feature-card" key={i}>
+              <div className="pd-feature-card sr-child" key={i}>
                 <span className="pd-feature-icon">{f.icon}</span>
                 <h3>{f.title}</h3>
                 <p>{f.description}</p>
@@ -83,12 +80,12 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 4. Examination Structure ─────────────────── */}
-      <section className="section-padding">
-        <div className="container pd-section">
-          <h2 className="section-title">Examination Structure</h2>
+      <section className="section-padding" ref={examRef}>
+        <div className={`container pd-section sr-stagger ${examVis ? 'sr-visible' : ''}`}>
+          <h2 className="section-title sr-child">Examination Structure</h2>
           <div className="pd-exam-timeline">
             {program.examStructure.map((stage, i) => (
-              <div className="pd-exam-stage" key={i}>
+              <div className="pd-exam-stage sr-child" key={i}>
                 <div className="pd-exam-number">{i + 1}</div>
                 <div className="pd-exam-info">
                   <h3>{stage.stage}</h3>
@@ -101,8 +98,8 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 5. Preparation Areas / Syllabus ──────────── */}
-      <section className="section-padding bg-soft">
-        <div className="container pd-section">
+      <section className="section-padding bg-soft" ref={prepRef}>
+        <div className={`container pd-section sr ${prepVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title">Preparation Areas</h2>
           <div className="pd-prep-tags">
             {program.preparationAreas.map((area) => (
@@ -115,12 +112,12 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 6. Course Structure ──────────────────────── */}
-      <section className="section-padding">
-        <div className="container pd-section">
-          <h2 className="section-title">Course Structure</h2>
+      <section className="section-padding" ref={courseRef}>
+        <div className={`container pd-section sr-stagger ${courseVis ? 'sr-visible' : ''}`}>
+          <h2 className="section-title sr-child">Course Structure</h2>
           <div className="pd-course-phases">
             {program.courseStructure.map((phase, i) => (
-              <div className="pd-phase-card" key={i}>
+              <div className="pd-phase-card sr-child" key={i}>
                 <div className="pd-phase-badge">{phase.phase}</div>
                 <h3>{phase.title}</h3>
                 <p>{phase.description}</p>
@@ -131,8 +128,8 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 7. Teaching Methodology ──────────────────── */}
-      <section className="section-padding bg-soft">
-        <div className="container pd-section">
+      <section className="section-padding bg-soft" ref={methodRef}>
+        <div className={`container pd-section sr ${methodVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title">Teaching Methodology</h2>
           <div className="pd-methodology-card card">
             <ul className="pd-methodology-list">
@@ -148,16 +145,16 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 8. Residential Experience ────────────────── */}
-      <section className="section-padding">
-        <div className="container pd-section">
-          <h2 className="section-title">Residential Experience</h2>
-          <p className="pd-section-subtitle">
+      <section className="section-padding" ref={resRef}>
+        <div className={`container pd-section sr-stagger ${resVis ? 'sr-visible' : ''}`}>
+          <h2 className="section-title sr-child">Residential Experience</h2>
+          <p className="pd-section-subtitle sr-child">
             Learning extends beyond the classroom. Our residential environment provides aspirants with a disciplined
             academic routine, guided study hours, peer learning, regular assessments and continuous mentorship.
           </p>
           <div className="pd-residential-grid">
             {program.residentialFeatures.map((f, i) => (
-              <div className="pd-res-card" key={i}>
+              <div className="pd-res-card sr-child" key={i}>
                 <span className="pd-res-icon">{f.icon}</span>
                 <h3>{f.title}</h3>
                 <p>{f.description}</p>
@@ -168,16 +165,16 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 9. Test & Assessment ─────────────────────── */}
-      <section className="section-padding bg-soft">
-        <div className="container pd-section">
-          <h2 className="section-title">Test &amp; Assessment</h2>
+      <section className="section-padding bg-soft" ref={testRef}>
+        <div className={`container pd-section sr-stagger ${testVis ? 'sr-visible' : ''}`}>
+          <h2 className="section-title sr-child">Test &amp; Assessment</h2>
           <div className="pd-test-grid">
             {[
               { icon: '📝', title: 'Regular Tests', desc: 'Weekly sectional and full-length mock tests conducted under real examination conditions.' },
               { icon: '📊', title: 'Performance Analysis', desc: 'Detailed score analysis, ranking and identification of improvement areas after each test.' },
               { icon: '🎯', title: 'Individual Feedback', desc: 'Personalised feedback from mentors with specific guidance on answer improvement.' },
             ].map((item, i) => (
-              <div className="pd-test-card" key={i}>
+              <div className="pd-test-card sr-child" key={i}>
                 <span className="pd-test-icon">{item.icon}</span>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
@@ -188,8 +185,8 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 10. Admission Process ────────────────────── */}
-      <section className="section-padding">
-        <div className="container pd-section">
+      <section className="section-padding" ref={admRef}>
+        <div className={`container pd-section sr ${admVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title">Admission Process</h2>
           <div className="pd-admission-steps">
             {program.admissionSteps.map((step, i) => (
@@ -206,8 +203,8 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 11. FAQs ────────────────────────────────── */}
-      <section className="section-padding bg-soft">
-        <div className="container pd-section">
+      <section className="section-padding bg-soft" ref={faqRef}>
+        <div className={`container pd-section sr ${faqVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title">Frequently Asked Questions</h2>
           <div className="pd-faq-list">
             {program.faqs.map((faq, i) => (
@@ -233,17 +230,18 @@ const ProgramDetail = () => {
       </section>
 
       {/* ─── 12. Apply Now CTA ────────────────────────── */}
-      <section className="pd-apply-cta">
-        <div className="container text-center">
+      <section className="pd-apply-cta" ref={ctaRef}>
+        <div className="pd-apply-cta-glow" aria-hidden="true" />
+        <div className={`container text-center sr-scale ${ctaVis ? 'sr-visible' : ''}`}>
           <h2>Begin Your {program.name} Preparation</h2>
           <p>
             Take the next step towards your goal. Apply now to join the residential programme or contact our
             admissions team for personalised guidance.
           </p>
           <div className="pd-cta-actions">
-            <Link to="/admissions/apply" className="btn btn-accent btn-lg">
+            <a href={ZOHO_APPLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-accent btn-lg">
               Apply Now
-            </Link>
+            </a>
             <Link to="/contact" className="btn btn-ghost btn-lg">
               Contact Us
             </Link>

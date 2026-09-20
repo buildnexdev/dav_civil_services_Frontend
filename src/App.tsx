@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
 import DashboardLayout from './layouts/DashboardLayout';
+import MandalaPattern from './components/common/MandalaPattern';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -77,7 +78,8 @@ const AppLayout = () => {
   return (
     <>
       {isPublicPage && <Navbar />}
-      <main className={isPublicPage ? 'main-content' : ''}>
+      <main className={isPublicPage ? 'main-content position-relative' : ''}>
+        {isPublicPage && <MandalaPattern className="global-bg-mandala" />}
         <Suspense fallback={<LoadingSpinner fullScreen label="Loading page..." />}>
           <Routes>
             <Route path="/" element={<Home />} />

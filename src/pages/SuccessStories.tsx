@@ -10,7 +10,6 @@ const SuccessStories = () => {
 
   return (
     <div className="success-page">
-      <section className="page-hero"><div className="container"><h1>Success Stories</h1><p className="lead">Celebrating the achievements of DAV Civil Services aspirants who have made their mark.</p></div></section>
       <section className="section-padding">
         <div className="container">
           <div className="filter-tabs">{categories.map(c => <button key={c} className={`tab-btn ${cat === c ? 'active' : ''}`} onClick={() => setCat(c)}>{c}</button>)}</div>

@@ -9,7 +9,6 @@ const scholarships = [
 
 const Scholarship = () => (
   <div className="scholarship-page">
-    <section className="page-hero"><div className="container"><h1>Scholarship Support</h1><p className="lead">DAV believes in equal opportunity. Our scholarship programs ensure that no deserving aspirant is left behind due to financial constraints.</p></div></section>
     <section className="section-padding">
       <div className="container">
         <h2 className="section-title">Scholarship Categories</h2>

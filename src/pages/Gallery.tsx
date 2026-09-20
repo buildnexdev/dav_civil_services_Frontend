@@ -11,7 +11,6 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page">
-      <section className="page-hero"><div className="container"><h1>Gallery</h1><p className="lead">A visual journey through life at DAV Civil Services Residential Program.</p></div></section>
       <section className="section-padding">
         <div className="container">
           <div className="filter-tabs">{categories.map(c => <button key={c} className={`tab-btn ${cat === c ? 'active' : ''}`} onClick={() => setCat(c)}>{c}</button>)}</div>
