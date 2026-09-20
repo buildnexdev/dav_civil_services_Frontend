@@ -1,17 +1,19 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
-import { demoUsers } from '../data/demoData';
+import { api } from '../lib/api';
 
 type Role = 'admin' | 'student' | 'staff';
 
 interface User {
+  id: number;
   username: string;
   role: Role;
+  token: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (username: string, password: string) => { success: boolean; error?: string; redirect?: string };
+  login: (username: string, password: string) => Promise<{ success: boolean; error?: string; redirect?: string }>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -27,17 +29,40 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(() => {
     const stored = localStorage.getItem('dav_user');
-    return stored ? JSON.parse(stored) : null;
+    if (!stored) return null;
+    try {
+      const parsed = JSON.parse(stored);
+      if (!parsed?.token || !parsed?.role) return null;
+      return parsed;
+    } catch {
+      return null;
+    }
   });
 
-  const login = (username: string, password: string) => {
-    const found = demoUsers.find(u => u.username === username && u.password === password);
-    if (!found) return { success: false, error: 'Invalid username or password.' };
-    const u = { username: found.username, role: found.role };
-    setUser(u);
-    localStorage.setItem('dav_user', JSON.stringify(u));
-    const redirectMap: Record<Role, string> = { admin: '/admin', student: '/student', staff: '/staff' };
-    return { success: true, redirect: redirectMap[found.role] };
+  const login = async (username: string, password: string) => {
+    try {
+      const data = await api<{
+        success: boolean;
+        token: string;
+        user: { id: number; username: string; role: Role };
+      }>('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+      });
+
+      const nextUser: User = {
+        id: data.user.id,
+        username: data.user.username,
+        role: data.user.role,
+        token: data.token,
+      };
+      setUser(nextUser);
+      localStorage.setItem('dav_user', JSON.stringify(nextUser));
+      const redirectMap: Record<Role, string> = { admin: '/admin', student: '/student', staff: '/staff' };
+      return { success: true, redirect: redirectMap[data.user.role] };
+    } catch (err) {
+      return { success: false, error: err instanceof Error ? err.message : 'Login failed.' };
+    }
   };
 
   const logout = () => {

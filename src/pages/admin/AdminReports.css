@@ -1,0 +1,86 @@
+.report-subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.report-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.report-tab {
+  border: 1px solid var(--border-color);
+  background: white;
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.report-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: flex-end;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.report-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.report-filters .form-control {
+  width: 170px;
+  min-width: 140px;
+}
+
+.report-filter-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 2px;
+}
+
+.report-stats {
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  .dash-sidebar,
+  .dash-topbar,
+  .report-tabs,
+  .report-filters,
+  .student-page-header .btn {
+    display: none !important;
+  }
+
+  .dash-main {
+    margin-left: 0 !important;
+  }
+
+  .report-print {
+    box-shadow: none;
+    border: none;
+  }
+}

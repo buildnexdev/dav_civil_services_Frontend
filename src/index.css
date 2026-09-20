@@ -219,6 +219,21 @@ ul {
   font-size: 0.875rem;
 }
 
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  filter: brightness(0.92);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .btn-lg {
   padding: 0.95rem 1.8rem;
   font-size: 1.05rem;

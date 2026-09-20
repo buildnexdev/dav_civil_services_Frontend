@@ -8,7 +8,7 @@ const StudentGenericPage = ({ title, description }: { title: string; description
   </div>
 );
 
-export const StudentProfile = () => <StudentGenericPage title="My Profile" description="View and update your personal, academic, and hostel information." />;
+export { default as StudentProfile } from './StudentProfile';
 export const StudentTimetable = () => <StudentGenericPage title="Timetable" description="View your daily and weekly class schedule." />;
 export const StudentAttendance = () => <StudentGenericPage title="My Attendance" description="View today's status, monthly percentage, and attendance calendar." />;
 export const StudentTests = () => <StudentGenericPage title="Tests" description="View upcoming tests, completed tests, and detailed results." />;
@@ -18,4 +18,4 @@ export const StudentCurrentAffairs = () => <StudentGenericPage title="Current Af
 export const StudentAssignments = () => <StudentGenericPage title="Assignments" description="View and submit assigned tasks and essay writing exercises." />;
 export const StudentScholarship = () => <StudentGenericPage title="Scholarship" description="Check your scholarship status and application details." />;
 export const StudentAnnouncements = () => <StudentGenericPage title="Announcements" description="Important notices and updates from the administration." />;
-export const StudentPayments = () => <StudentGenericPage title="Payments" description="View payment history, pending dues, and download receipts." />;
+export { default as StudentPayments } from './StudentPayments';

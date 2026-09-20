@@ -1,0 +1,134 @@
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 1.25rem;
+}
+
+.settings-grid .dash-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.access-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.access-panel h3 {
+  margin: 0 0 0.35rem;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.access-hint {
+  margin: 0 0 1rem;
+  min-height: 2.4em;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.access-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  padding: 0.6rem;
+}
+
+.access-option {
+  display: grid;
+  grid-template-columns: 18px 1.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.7rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-md);
+  background: white;
+  border: 1px solid transparent;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.access-option:hover {
+  border-color: var(--border-color);
+}
+
+.access-option.required {
+  background: #f4efe9;
+  cursor: default;
+}
+
+.access-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--primary);
+  justify-self: center;
+}
+
+.access-option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.access-option-name {
+  min-width: 0;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.access-option-badge {
+  flex-shrink: 0;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: white;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.access-field-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .access-hint {
+    min-height: 0;
+  }
+}

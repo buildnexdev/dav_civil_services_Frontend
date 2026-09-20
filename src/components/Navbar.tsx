@@ -37,7 +37,7 @@ const Navbar = () => {
             <NavLink to="/academics" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Academics</NavLink>
             <NavLink to="/admissions" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Admissions</NavLink>
             <NavLink to="/scholarship" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Scholarship</NavLink>
-            <NavLink to="/faculty" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Faculty</NavLink>
+            <NavLink to="/faculty" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Mentors</NavLink>
             <NavLink to="/success-stories" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Success</NavLink>
             <NavLink to="/alumni" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Alumni</NavLink>
             <NavLink to="/news" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>News</NavLink>

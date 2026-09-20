@@ -1,20 +1,44 @@
 import { useState } from 'react';
+import { api } from '../lib/api';
+import { payWithRazorpay, type RazorpayOrderResponse } from '../lib/razorpay';
 import './ApplyOnline.css';
 
 const steps = ['Personal Info', 'Education', 'Exam', 'Documents', 'Review', 'Payment'];
 
 const ApplyOnline = () => {
   const [step, setStep] = useState(0);
-  const [form, setForm] = useState({ fullName: '', dob: '', gender: '', mobile: '', email: '', address: '', district: '', state: '', tenth: '', twelfth: '', degree: '', university: '', percentage: '', gradYear: '', exam: '', paymentMethod: '' });
+  const [form, setForm] = useState({ fullName: '', dob: '', gender: '', mobile: '', email: '', address: '', district: '', state: '', tenth: '', twelfth: '', degree: '', university: '', percentage: '', gradYear: '', exam: '' });
   const [submitted, setSubmitted] = useState(false);
   const [appId, setAppId] = useState('');
+  const [paying, setPaying] = useState(false);
+  const [payError, setPayError] = useState('');
 
   const update = (field: string, val: string) => setForm({ ...form, [field]: val });
-  const next = () => setStep(s => Math.min(s + 1, 5));
-  const prev = () => setStep(s => Math.max(s - 1, 0));
-  const submit = () => {
-    setAppId('APP' + Date.now().toString().slice(-8));
-    setSubmitted(true);
+  const next = () => setStep((s) => Math.min(s + 1, 5));
+  const prev = () => setStep((s) => Math.max(s - 1, 0));
+
+  const payAndSubmit = async () => {
+    setPaying(true);
+    setPayError('');
+    try {
+      const order = await api<RazorpayOrderResponse>('/api/payments/order', {
+        method: 'POST',
+        body: JSON.stringify({
+          category: 'Application Fee',
+          amount: 500,
+          payerName: form.fullName,
+          email: form.email,
+          phone: form.mobile,
+        }),
+      });
+      await payWithRazorpay(order, { name: form.fullName, email: form.email, contact: form.mobile });
+      setAppId('APP' + Date.now().toString().slice(-8));
+      setSubmitted(true);
+    } catch (err) {
+      setPayError(err instanceof Error ? err.message : 'Payment was not completed.');
+    } finally {
+      setPaying(false);
+    }
   };
 
   if (submitted) {
@@ -91,20 +115,15 @@ const ApplyOnline = () => {
             {step === 5 && (
               <div className="payment-section">
                 <h3>Application Fee: ₹500</h3>
-                <div className="payment-methods">
-                  {['UPI', 'Credit Card', 'Debit Card', 'Net Banking'].map(m => (
-                    <label className={`payment-option ${form.paymentMethod === m ? 'selected' : ''}`} key={m}>
-                      <input type="radio" name="payment" value={m} checked={form.paymentMethod === m} onChange={e => update('paymentMethod', e.target.value)} /> {m}
-                    </label>
-                  ))}
-                </div>
+                <p className="text-muted">Pay securely with Razorpay Test Mode. Use card 4111 1111 1111 1111, any future expiry, and any CVV. No real money is charged.</p>
+                {payError && <p className="text-muted" style={{ color: 'var(--danger)' }}>{payError}</p>}
               </div>
             )}
 
             <div className="form-actions">
               {step > 0 && <button className="btn btn-outline" onClick={prev}>Previous</button>}
               {step < 5 && <button className="btn btn-primary" onClick={next}>Next</button>}
-              {step === 5 && <button className="btn btn-primary" onClick={submit}>Submit & Pay</button>}
+              {step === 5 && <button className="btn btn-primary" onClick={payAndSubmit} disabled={paying}>{paying ? 'Opening Razorpay...' : 'Pay ₹500 with Razorpay'}</button>}
             </div>
           </div>
         </div>
