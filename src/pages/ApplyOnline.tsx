@@ -3,8 +3,6 @@ import { api } from '../lib/api';
 import { payWithRazorpay, type RazorpayOrderResponse } from '../lib/razorpay';
 import './ApplyOnline.css';
 
-const steps = ['Personal Info', 'Education', 'Exam', 'Documents', 'Review', 'Payment'];
-
 const ApplyOnline = () => {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ fullName: '', dob: '', gender: '', mobile: '', email: '', address: '', district: '', state: '', tenth: '', twelfth: '', degree: '', university: '', percentage: '', gradYear: '', exam: '' });
@@ -56,7 +54,6 @@ const ApplyOnline = () => {
 
   return (
     <div className="apply-page">
-      <section className="page-hero"><div className="container"><h1>Online Application</h1><p className="lead">Complete the form below to apply for admission.</p></div></section>
       <section className="section-padding">
         <div className="container">
           <div className="stepper">{steps.map((s, i) => (
@@ -125,6 +122,18 @@ const ApplyOnline = () => {
               {step < 5 && <button className="btn btn-primary" onClick={next}>Next</button>}
               {step === 5 && <button className="btn btn-primary" onClick={payAndSubmit} disabled={paying}>{paying ? 'Opening Razorpay...' : 'Pay ₹500 with Razorpay'}</button>}
             </div>
+          </div>
+
+          {/* Embedded Zoho Creator Application Form */}
+          <div className="card form-container-card" style={{ padding: '0.5rem', borderRadius: 'var(--radius-lg)', overflow: 'hidden', minHeight: '800px' }}>
+            <iframe
+              src={ZOHO_APPLY_URL}
+              title="DAV Civil Services Application Form"
+              width="100%"
+              height="900px"
+              style={{ border: 'none', borderRadius: 'var(--radius-md)' }}
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

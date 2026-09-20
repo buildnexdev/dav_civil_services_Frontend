@@ -28,7 +28,6 @@ const News = () => {
 
   return (
     <div className="news-page">
-      <section className="page-hero"><div className="container"><h1>News & Announcements</h1><p className="lead">Stay updated with the latest notifications, exam updates, and program events.</p></div></section>
       <section className="section-padding">
         <div className="container">
           <div className="filter-tabs">{cats.map((c) => <button key={c} className={`tab-btn ${cat === c ? 'active' : ''}`} onClick={() => setCat(c)}>{c}</button>)}</div>

@@ -1,54 +1,99 @@
 import { Link } from 'react-router-dom';
+import { ZOHO_APPLY_URL } from '../constants/links';
 import './Admissions.css';
 
 const Admissions = () => (
   <div className="admissions-page">
-    <section className="page-hero">
-      <div className="container"><h1>Admissions</h1><p className="lead">Join DAV Civil Services Residential Program and transform your preparation journey.</p></div>
-    </section>
-
     <section className="section-padding">
       <div className="container">
+        <div className="text-center mb-4">
+          <span className="badge badge-accent">Enroll Today</span>
+          <h1 className="section-title">Admissions & Guidelines</h1>
+          <p className="admissions-lead-subtitle">
+            Comprehensive information regarding eligibility criteria, application process, fee structure, and entrance deadlines for the 2027–28 residential batch.
+          </p>
+        </div>
+
         <div className="admissions-grid">
           <div className="admissions-info">
             <div className="card info-card">
-              <h2>Eligibility</h2>
-              <ul><li>Graduate in any discipline from a recognized university</li><li>Age: 21-32 years (relaxation as per government norms)</li><li>Committed to full-time residential preparation</li><li>Cleared entrance examination conducted by DAV</li></ul>
+              <h2>🎓 Eligibility Criteria</h2>
+              <ul>
+                <li>Graduate in any discipline from a recognized university.</li>
+                <li>Age Limit: 21 to 32 years (Relaxation applicable as per Govt. norms).</li>
+                <li>Committed to full-time 24/7 campus residential preparation.</li>
+                <li>Qualify in the DAV Entrance Examination & Personal Interview.</li>
+              </ul>
             </div>
+
             <div className="card info-card">
-              <h2>Admission Process</h2>
-              <ol><li>Submit online application with required documents</li><li>Appear for DAV Entrance Examination</li><li>Personal Interview for shortlisted candidates</li><li>Final selection based on merit & interview</li><li>Admission confirmation & fee payment</li></ol>
+              <h2>📋 Admission Process</h2>
+              <ol className="process-list">
+                <li><strong>Online Registration:</strong> Submit online application form with academic credentials.</li>
+                <li><strong>Entrance Exam:</strong> Appear for DAV All-India Civil Services Selection Test.</li>
+                <li><strong>Personal Interview:</strong> Shortlisted candidates undergo a mentorship interview.</li>
+                <li><strong>Final Merit List:</strong> Selection based on cumulative score in written exam & interview.</li>
+                <li><strong>Enrollment & Hostel Allotment:</strong> Fee confirmation and campus room assignment.</li>
+              </ol>
             </div>
+
             <div className="card info-card">
-              <h2>Important Dates (Demo)</h2>
-              <ul><li><strong>Application Start:</strong> January 15, 2026</li><li><strong>Application Deadline:</strong> March 31, 2026</li><li><strong>Entrance Exam:</strong> April 20, 2026</li><li><strong>Interview:</strong> May 5-10, 2026</li><li><strong>Results:</strong> May 20, 2026</li><li><strong>Program Start:</strong> June 15, 2026</li></ul>
+              <h2>📅 Important Dates (2027–28 Session)</h2>
+              <div className="dates-grid">
+                <div className="date-row"><span>Application Start:</span> <strong>January 15, 2026</strong></div>
+                <div className="date-row"><span>Application Deadline:</span> <strong>March 31, 2026</strong></div>
+                <div className="date-row"><span>DAV Entrance Exam:</span> <strong>April 20, 2026</strong></div>
+                <div className="date-row"><span>Interview Schedule:</span> <strong>May 5–10, 2026</strong></div>
+                <div className="date-row"><span>Final Selection List:</span> <strong>May 20, 2026</strong></div>
+                <div className="date-row"><span>Batch Commencement:</span> <strong>June 15, 2026</strong></div>
+              </div>
             </div>
+
             <div className="card info-card">
-              <h2>Fee Structure (Demo)</h2>
-              <ul><li><strong>Application Fee:</strong> ₹500</li><li><strong>Program Fee:</strong> ₹50,000 per year</li><li><strong>Hostel Fee:</strong> ₹30,000 per year</li><li><strong>Test Series Fee:</strong> ₹5,000</li></ul>
-              <p className="note">* Scholarships available. Fee concessions for merit & need-based categories.</p>
+              <h2>💳 Fee Structure & Grants</h2>
+              <ul className="fee-list">
+                <li><strong>Application Fee:</strong> ₹500</li>
+                <li><strong>Annual Program Coaching Fee:</strong> ₹50,000 / year</li>
+                <li><strong>Hostel & Mess Accommodation:</strong> ₹30,000 / year</li>
+                <li><strong>Comprehensive Test Series Fee:</strong> ₹5,000</li>
+              </ul>
+              <p className="note">* Up to 100% Super-30 scholarships available for top entrance exam rankers.</p>
             </div>
+
             <div className="card info-card">
-              <h2>Required Documents</h2>
-              <ul><li>Recent passport-size photograph</li><li>Valid ID proof (Aadhar/Voter ID/Passport)</li><li>10th & 12th mark sheets</li><li>Degree certificate / final year mark sheet</li><li>Community certificate (if applicable)</li><li>Income certificate (for scholarship)</li></ul>
+              <h2>📂 Required Documents</h2>
+              <ul className="docs-list">
+                <li>Recent passport-size photograph</li>
+                <li>Valid Photo ID (Aadhar / Voter ID / Passport)</li>
+                <li>10th & 12th Marksheets</li>
+                <li>Undergraduate Degree Certificate / Consolidated Marksheet</li>
+                <li>Community Certificate (if applicable)</li>
+                <li>Annual Family Income Certificate (for Super-30 / Merit Scholarship)</li>
+              </ul>
             </div>
           </div>
+
           <div className="admissions-cta-panel">
             <div className="card cta-card">
-              <h2>Apply Online</h2>
-              <p>Start your journey towards becoming a civil servant. Our multi-step application process is simple and straightforward.</p>
-              <Link to="/admissions/apply" className="btn btn-primary w-100">Start Application</Link>
-              <div className="cta-divider">or</div>
-              <Link to="/admissions/track" className="btn btn-outline w-100">Track Application</Link>
+              <span className="badge badge-accent mb-2">Direct Apply</span>
+              <h2>Start Your Application</h2>
+              <p>Ready to join DAV Civil Services Residential Program? Fill out our official application form online.</p>
+              <a href={ZOHO_APPLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-accent btn-lg w-100 mb-2">Apply Online Now →</a>
+              <div className="cta-divider">or track existing application</div>
+              <Link to="/admissions/track" className="btn btn-outline w-100">Track Application Status</Link>
             </div>
+
             <div className="card faq-card">
-              <h2>FAQs</h2>
+              <h2>Frequently Asked Questions</h2>
               {[
-                { q: 'Is the program fully residential?', a: 'Yes, all students must stay on campus throughout the program duration.' },
-                { q: 'Can I choose my optional subject?', a: 'Yes, we offer coaching for popular optional subjects. Discuss with your mentor during admission.' },
-                { q: 'Is scholarship available?', a: 'Yes, merit-based, need-based and social support scholarships are available.' },
+                { q: 'Is the program 100% residential?', a: 'Yes, all students reside in our dedicated Gopalapuram, Chennai campus with 24/7 library and mentorship facilities.' },
+                { q: 'Can I select Optional subjects during coaching?', a: 'Yes, specialized guidance for popular optional subjects (Public Administration, Geography, History, PSIR, Tamil Literature) is provided.' },
+                { q: 'How are scholarships awarded?', a: 'Top rankers in the entrance examination receive up to 100% fee waiver under the Vedritam Super-30 initiative.' },
               ].map((faq, i) => (
-                <div className="faq-item" key={i}><div className="faq-q">{faq.q}</div><div className="faq-a">{faq.a}</div></div>
+                <div className="faq-item" key={i}>
+                  <div className="faq-q">Q: {faq.q}</div>
+                  <div className="faq-a">{faq.a}</div>
+                </div>
               ))}
             </div>
           </div>

@@ -7,11 +7,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
 import DashboardLayout from './layouts/DashboardLayout';
+import MandalaPattern from './components/common/MandalaPattern';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Academics = lazy(() => import('./pages/Academics'));
+const Programs = lazy(() => import('./pages/Programs'));
+const ProgramDetail = lazy(() => import('./pages/ProgramDetail'));
 const Admissions = lazy(() => import('./pages/Admissions'));
 const ApplyOnline = lazy(() => import('./pages/ApplyOnline'));
 const TrackApplication = lazy(() => import('./pages/TrackApplication'));
@@ -76,12 +79,15 @@ const AppLayout = () => {
   return (
     <>
       {isPublicPage && <Navbar />}
-      <main className={isPublicPage ? 'main-content' : ''}>
+      <main className={isPublicPage ? 'main-content position-relative' : ''}>
+        {isPublicPage && <MandalaPattern className="global-bg-mandala" />}
         <Suspense fallback={<LoadingSpinner fullScreen label="Loading page..." />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/programs/:slug" element={<ProgramDetail />} />
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/admissions/apply" element={<ApplyOnline />} />
             <Route path="/admissions/track" element={<TrackApplication />} />
