@@ -20,6 +20,13 @@
 
 .dash-content { padding: 2rem; flex: 1; }
 
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.dash-grid .dash-section { margin-bottom: 0; }
+
+@media (max-width: 1024px) {
+  .dash-grid { grid-template-columns: 1fr; }
+}
+
 /* Dashboard Cards */
 .stat-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
 .stat-card { background: white; padding: 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
@@ -36,11 +43,19 @@
 .dash-table th { background: var(--bg-soft); color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; }
 .dash-table tbody tr:hover { background: var(--bg-soft); }
 
+.student-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
 .status-badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; }
 .status-active, .status-completed, .status-approved, .status-selected, .status-present { background: var(--success-light); color: var(--success); }
-.status-pending, .status-submitted, .status-under-review { background: var(--warning-light); color: var(--accent-hover); }
+.status-pending, .status-submitted, .status-under-review, .status-inactive { background: var(--warning-light); color: var(--accent-hover); }
 .status-rejected, .status-absent, .status-failed { background: var(--danger-light); color: var(--danger); }
-.status-leave { background: var(--info-light); color: var(--info); }
+.status-leave, .status-graduated, .status-ongoing, .status-created { background: var(--info-light); color: var(--info); }
+.status-upcoming { background: var(--primary-lighter); color: var(--primary); }
+.status-cancelled { background: var(--danger-light); color: var(--danger); }
 
 @media (max-width: 768px) {
   .dash-sidebar { width: 70px; } .dash-sidebar-header > div, .dash-link span:not(.dash-icon) { display: none; }

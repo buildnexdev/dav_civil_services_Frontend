@@ -9,6 +9,7 @@ const Faculty = () => {
 
   return (
     <div className="faculty-page">
+      <section className="page-hero"><div className="container"><h1>Our Mentors</h1><p className="lead">Learn from experienced educators and subject matter experts dedicated to your success.</p></div></section>
       <section className="section-padding">
         <div className="container">
           <div className="filter-bar">

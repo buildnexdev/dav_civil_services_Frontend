@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
+import { AccessProvider } from './hooks/useAccess';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -29,18 +30,18 @@ const Login = lazy(() => import('./pages/Login'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminStudents = lazy(() => import('./pages/admin/AdminStudents'));
 const AdminAdmissions = lazy(() => import('./pages/admin/AdminAdmissions'));
-const AdminFacultyPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminFacultyPage })));
-const AdminAcademicsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminAcademicsPage })));
-const AdminAttendancePage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminAttendancePage })));
+const AdminMentors = lazy(() => import('./pages/admin/AdminMentors'));
+const AdminAcademics = lazy(() => import('./pages/admin/AdminAcademics'));
+const AdminAttendance = lazy(() => import('./pages/admin/AdminAttendance'));
 const AdminScholarshipsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminScholarshipsPage })));
-const AdminAlumniPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminAlumniPage })));
-const AdminGalleryPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminGalleryPage })));
-const AdminNewsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminNewsPage })));
-const AdminNotificationsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminNotificationsPage })));
-const AdminPaymentsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminPaymentsPage })));
-const AdminReportsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminReportsPage })));
-const AdminAnalyticsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminAnalyticsPage })));
-const AdminSettingsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminSettingsPage })));
+const AdminAlumni = lazy(() => import('./pages/admin/AdminAlumni'));
+const AdminGallery = lazy(() => import('./pages/admin/AdminGallery'));
+const AdminNews = lazy(() => import('./pages/admin/AdminNews'));
+const AdminNotifications = lazy(() => import('./pages/admin/AdminNotifications'));
+const AdminPayments = lazy(() => import('./pages/admin/AdminPayments'));
+const AdminReports = lazy(() => import('./pages/admin/AdminReports'));
+const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 
 const StudentDashboard = lazy(() => import('./pages/student/StudentDashboard'));
 const StudentProfile = lazy(() => import('./pages/student/StudentPages').then(m => ({ default: m.StudentProfile })));
@@ -103,18 +104,19 @@ const AppLayout = () => {
               <Route index element={<AdminDashboard />} />
               <Route path="students" element={<AdminStudents />} />
               <Route path="admissions" element={<AdminAdmissions />} />
-              <Route path="faculty" element={<AdminFacultyPage />} />
-              <Route path="academics" element={<AdminAcademicsPage />} />
-              <Route path="attendance" element={<AdminAttendancePage />} />
+              <Route path="mentors" element={<AdminMentors />} />
+              <Route path="faculty" element={<AdminMentors />} />
+              <Route path="academics" element={<AdminAcademics />} />
+              <Route path="attendance" element={<AdminAttendance />} />
               <Route path="scholarships" element={<AdminScholarshipsPage />} />
-              <Route path="alumni" element={<AdminAlumniPage />} />
-              <Route path="gallery" element={<AdminGalleryPage />} />
-              <Route path="news" element={<AdminNewsPage />} />
-              <Route path="notifications" element={<AdminNotificationsPage />} />
-              <Route path="payments" element={<AdminPaymentsPage />} />
-              <Route path="reports" element={<AdminReportsPage />} />
-              <Route path="analytics" element={<AdminAnalyticsPage />} />
-              <Route path="settings" element={<AdminSettingsPage />} />
+              <Route path="alumni" element={<AdminAlumni />} />
+              <Route path="gallery" element={<AdminGallery />} />
+              <Route path="news" element={<AdminNews />} />
+              <Route path="notifications" element={<AdminNotifications />} />
+              <Route path="payments" element={<AdminPayments />} />
+              <Route path="reports" element={<AdminReports />} />
+              <Route path="analytics" element={<AdminAnalytics />} />
+              <Route path="settings" element={<AdminSettings />} />
             </Route>
 
             <Route path="/student" element={<ProtectedRoute allowedRoles={['student']}><DashboardLayout role="student" /></ProtectedRoute>}>
@@ -156,11 +158,13 @@ const AppLayout = () => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="app-container">
-          <AppLayout />
-        </div>
-      </Router>
+      <AccessProvider>
+        <Router>
+          <div className="app-container">
+            <AppLayout />
+          </div>
+        </Router>
+      </AccessProvider>
     </AuthProvider>
   );
 }

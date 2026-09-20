@@ -21,9 +21,7 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    const result = login(username, password);
+    const result = await login(username, password);
     setLoading(false);
 
     if (result.success && result.redirect) {
@@ -98,11 +96,9 @@ const Login = () => {
           )}
 
           <div className="demo-credentials">
-            <p className="demo-title">Demo Credentials:</p>
+            <p className="demo-title">Default Admin Login:</p>
             <div className="demo-grid">
               <div className="demo-item"><span className="demo-role">Admin</span> admin / Admin@123</div>
-              <div className="demo-item"><span className="demo-role">Student</span> testStuent / password#1</div>
-              <div className="demo-item"><span className="demo-role">Staff</span> teststaff / password#1</div>
             </div>
           </div>
         </div>

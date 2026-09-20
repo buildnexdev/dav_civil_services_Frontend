@@ -1,32 +1,74 @@
-import { demoStudents, demoTestResults } from '../../data/demoData';
+import { useEffect, useState } from 'react';
+import { api } from '../../lib/api';
 
-const StaffDashboard = () => (
-  <div>
-    <h2 style={{marginBottom:'1.5rem', color:'var(--primary)'}}>Staff Dashboard</h2>
-    <div className="stat-cards">
-      <div className="stat-card"><div className="stat-card-label">Today's Classes</div><div className="stat-card-value">3</div></div>
-      <div className="stat-card"><div className="stat-card-label">Total Students</div><div className="stat-card-value">{demoStudents.filter(s => s.status === 'Active').length}</div></div>
-      <div className="stat-card"><div className="stat-card-label">Attendance Today</div><div className="stat-card-value">94%</div></div>
-      <div className="stat-card"><div className="stat-card-label">Pending Tasks</div><div className="stat-card-value">5</div></div>
-      <div className="stat-card"><div className="stat-card-label">Upcoming Tests</div><div className="stat-card-value">2</div></div>
-      <div className="stat-card"><div className="stat-card-label">Mentorship</div><div className="stat-card-value">8 students</div></div>
-    </div>
+type Dash = {
+  stats: {
+    classesToday: number;
+    studentsActive: number;
+    avgAttendance: number;
+    attendanceToday: number;
+    upcomingTests: number;
+  };
+  recentStudents: { name: string; program: string; attendance: number; performance: number; status: string }[];
+  todaySessions: { title: string; type: string; startTime: string; venue: string; status: string }[];
+};
 
-    <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem'}}>
-      <div className="dash-section">
-        <h3>Recent Test Results</h3>
-        <table className="dash-table"><thead><tr><th>Test</th><th>Student</th><th>Marks</th><th>Rank</th></tr></thead>
-          <tbody>{demoTestResults.slice(0, 8).map(t => <tr key={t.id}><td>{t.testName}</td><td>{t.studentName}</td><td>{t.marks}/{t.totalMarks}</td><td>#{t.rank}</td></tr>)}</tbody>
-        </table>
+const StaffDashboard = () => {
+  const [data, setData] = useState<Dash | null>(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api<Dash>('/api/dashboard/staff')
+      .then(setData)
+      .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load dashboard.'))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <p className="student-empty">Loading dashboard...</p>;
+  if (error || !data) return <p className="student-empty">{error || 'No dashboard data.'}</p>;
+
+  return (
+    <div>
+      <h2 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>Staff Dashboard</h2>
+      <div className="stat-cards">
+        <div className="stat-card"><div className="stat-card-label">Today's Classes</div><div className="stat-card-value">{data.stats.classesToday}</div></div>
+        <div className="stat-card"><div className="stat-card-label">Active Students</div><div className="stat-card-value">{data.stats.studentsActive}</div></div>
+        <div className="stat-card"><div className="stat-card-label">Avg Attendance</div><div className="stat-card-value">{data.stats.avgAttendance}%</div></div>
+        <div className="stat-card"><div className="stat-card-label">Attendance Today</div><div className="stat-card-value">{data.stats.attendanceToday}%</div></div>
+        <div className="stat-card"><div className="stat-card-label">Upcoming Tests</div><div className="stat-card-value">{data.stats.upcomingTests}</div></div>
       </div>
-      <div className="dash-section">
-        <h3>My Students</h3>
-        <table className="dash-table"><thead><tr><th>Name</th><th>Program</th><th>Attendance</th><th>Performance</th></tr></thead>
-          <tbody>{demoStudents.slice(0, 8).map(s => <tr key={s.id}><td>{s.name}</td><td>{s.program}</td><td>{s.attendance}%</td><td>{s.performance}%</td></tr>)}</tbody>
-        </table>
+
+      <div className="dash-grid">
+        <div className="dash-section">
+          <h3>Today's Sessions</h3>
+          {data.todaySessions.length === 0 ? <p className="student-empty">No sessions scheduled today.</p> : (
+            <table className="dash-table">
+              <thead><tr><th>Title</th><th>Type</th><th>Time</th><th>Venue</th></tr></thead>
+              <tbody>
+                {data.todaySessions.map((s) => (
+                  <tr key={s.title + s.startTime}><td>{s.title}</td><td>{s.type}</td><td>{s.startTime || '—'}</td><td>{s.venue || '—'}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+        <div className="dash-section">
+          <h3>Students</h3>
+          {data.recentStudents.length === 0 ? <p className="student-empty">No students yet.</p> : (
+            <table className="dash-table">
+              <thead><tr><th>Name</th><th>Program</th><th>Attendance</th><th>Performance</th></tr></thead>
+              <tbody>
+                {data.recentStudents.map((s) => (
+                  <tr key={s.name}><td>{s.name}</td><td>{s.program || '—'}</td><td>{s.attendance}%</td><td>{s.performance}%</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default StaffDashboard;
