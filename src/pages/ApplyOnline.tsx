@@ -7,12 +7,15 @@ const ApplyOnline = () => {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ fullName: '', dob: '', gender: '', mobile: '', email: '', address: '', district: '', state: '', tenth: '', twelfth: '', degree: '', university: '', percentage: '', gradYear: '', exam: '', paymentMethod: '' });
   const [submitted, setSubmitted] = useState(false);
-  const appId = 'APP' + Date.now().toString().slice(-8);
+  const [appId, setAppId] = useState('');
 
   const update = (field: string, val: string) => setForm({ ...form, [field]: val });
   const next = () => setStep(s => Math.min(s + 1, 5));
   const prev = () => setStep(s => Math.max(s - 1, 0));
-  const submit = () => setSubmitted(true);
+  const submit = () => {
+    setAppId('APP' + Date.now().toString().slice(-8));
+    setSubmitted(true);
+  };
 
   if (submitted) {
     return (

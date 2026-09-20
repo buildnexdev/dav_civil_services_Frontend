@@ -1,8 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import type { ReactNode } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   allowedRoles: ('admin' | 'student' | 'staff')[];
 }
 
@@ -13,8 +14,8 @@ const ProtectedRoute = ({ children, allowedRoles }: Props) => {
   if (!allowedRoles.includes(user!.role)) {
     return (
       <div style={{ padding: '4rem', textAlign: 'center' }}>
-        <h2 style={{ color: '#EF4444', marginBottom: '1rem' }}>Access Denied</h2>
-        <p style={{ color: '#64748B' }}>You don't have permission to access this page.</p>
+        <h2 style={{ color: 'var(--danger)', marginBottom: '1rem' }}>Access Denied</h2>
+        <p style={{ color: 'var(--text-muted)' }}>You don't have permission to access this page.</p>
       </div>
     );
   }

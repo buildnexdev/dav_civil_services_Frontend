@@ -1,7 +1,7 @@
 import { demoStudents, demoApplications, demoFaculty, demoScholarshipApps, performanceData } from '../../data/demoData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend } from 'recharts';
 
-const COLORS = ['#1E3A8A', '#2563EB', '#F59E0B', '#10B981', '#8B5CF6', '#EF4444'];
+const COLORS = ['#2C1B12', '#5C4030', '#A8896C', '#3D7A5A', '#8A6F55', '#B42318'];
 const appStatusData = [
   { name: 'Submitted', value: demoApplications.filter(a => a.status === 'Submitted').length },
   { name: 'Under Review', value: demoApplications.filter(a => a.status === 'Under Review').length },
@@ -27,7 +27,7 @@ const AdminDashboard = () => (
       <div className="dash-section">
         <h3>Enrollment Trend</h3>
         <ResponsiveContainer width="100%" height={250}>
-          <BarChart data={performanceData}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="year" /><YAxis /><Tooltip /><Bar dataKey="enrolled" fill="#2563EB" radius={[4,4,0,0]} /><Bar dataKey="selected" fill="#10B981" radius={[4,4,0,0]} /></BarChart>
+          <BarChart data={performanceData}><CartesianGrid strokeDasharray="3 3" stroke="#E5DCD2" /><XAxis dataKey="year" /><YAxis /><Tooltip /><Bar dataKey="enrolled" fill="#5C4030" radius={[4,4,0,0]} /><Bar dataKey="selected" fill="#3D7A5A" radius={[4,4,0,0]} /></BarChart>
         </ResponsiveContainer>
       </div>
       <div className="dash-section">
@@ -39,7 +39,7 @@ const AdminDashboard = () => (
       <div className="dash-section">
         <h3>Performance Trend</h3>
         <ResponsiveContainer width="100%" height={250}>
-          <LineChart data={performanceData}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="year" /><YAxis /><Tooltip /><Legend /><Line type="monotone" dataKey="prelims" stroke="#2563EB" strokeWidth={2} /><Line type="monotone" dataKey="mains" stroke="#F59E0B" strokeWidth={2} /><Line type="monotone" dataKey="selected" stroke="#10B981" strokeWidth={2} /></LineChart>
+          <LineChart data={performanceData}><CartesianGrid strokeDasharray="3 3" stroke="#E5DCD2" /><XAxis dataKey="year" /><YAxis /><Tooltip /><Legend /><Line type="monotone" dataKey="prelims" stroke="#5C4030" strokeWidth={2} /><Line type="monotone" dataKey="mains" stroke="#A8896C" strokeWidth={2} /><Line type="monotone" dataKey="selected" stroke="#3D7A5A" strokeWidth={2} /></LineChart>
         </ResponsiveContainer>
       </div>
       <div className="dash-section">

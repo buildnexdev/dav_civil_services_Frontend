@@ -1,10 +1,10 @@
 import './Scholarship.css';
 
 const scholarships = [
-  { name: 'Merit Scholarship', amount: '₹25,000/year', criteria: 'Top 10% in entrance exam & consistent test performance', color: '#2563EB' },
-  { name: 'Need-Based Scholarship', amount: '₹40,000/year', criteria: 'Family income below ₹3,00,000 per annum with valid income certificate', color: '#F59E0B' },
-  { name: 'Social Support Scholarship', amount: '₹35,000/year', criteria: 'SC/ST/OBC candidates with community certificate & financial need', color: '#10B981' },
-  { name: 'Academic Excellence', amount: '₹25,000/year', criteria: 'Graduation percentage above 80% from recognized university', color: '#8B5CF6' },
+  { name: 'Merit Scholarship', amount: '₹25,000/year', criteria: 'Top 10% in entrance exam & consistent test performance', color: 'var(--primary-light)' },
+  { name: 'Need-Based Scholarship', amount: '₹40,000/year', criteria: 'Family income below ₹3,00,000 per annum with valid income certificate', color: 'var(--accent)' },
+  { name: 'Social Support Scholarship', amount: '₹35,000/year', criteria: 'SC/ST/OBC candidates with community certificate & financial need', color: 'var(--success)' },
+  { name: 'Academic Excellence', amount: '₹25,000/year', criteria: 'Graduation percentage above 80% from recognized university', color: 'var(--primary-mid)' },
 ];
 
 const Scholarship = () => (
