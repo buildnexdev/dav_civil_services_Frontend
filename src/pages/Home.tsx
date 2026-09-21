@@ -112,12 +112,12 @@ const Home = () => {
       </section>
 
       {/* ─── 3. History & Heritage Section ────────── */}
-      <section className="history-ethos-section section-padding" ref={historyRef}>
-        <div className="history-badge-row text-center mb-3">
+      <section className="history-ethos-section" ref={historyRef}>
+        <div className="history-badge-row text-center">
           <span className="section-badge-tag">HISTORY</span>
         </div>
         <div className={`container history-grid ${historyVis ? 'sr-visible' : ''}`}>
-          <div className="history-text-col">
+          <div className="history-content">
             <h2 className="history-main-title">Vedritam Group</h2>
             <p className="history-tagline">In service of Arya Samaj and the D.A.V. Educational tradition</p>
 
@@ -128,7 +128,6 @@ const Home = () => {
               With a transformative educational model that promoted a judicious mix of Vedic learning (Para Vidya) and contemporary subjects (Apara Vidya), DAV emerged as one of the earliest organized schooling systems. At its core was the belief that education must nurture not only intellectual capability but also character and social responsibility.
             </p>
 
-            {/* D.A.V. Acronym Card */}
             <div className="dav-acronym-card">
               <div className="dav-acronym-box">
                 <div className="acronym-letter-group">
@@ -145,17 +144,17 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="history-tree-col">
+          <div className="history-tree-wrap">
             <TreeIllustration className="history-tree-svg" />
           </div>
         </div>
       </section>
 
       {/* ─── 4. Programs Grid with Mandala Backdrop ─ */}
-      <section className="programs-section section-padding bg-soft position-relative" ref={progsRef}>
+      <section className="programs-section bg-soft position-relative" ref={progsRef}>
         <MandalaPattern className="section-mandala-watermark" />
         <div className={`container sr ${progsVis ? 'sr-visible' : ''}`}>
-          <div className="text-center mb-4">
+          <div className="text-center programs-heading">
             <span className="badge badge-accent">Residential Coaching</span>
             <h2 className="section-title">Programs Offered</h2>
             <p className="programs-section-subtitle">
@@ -177,16 +176,16 @@ const Home = () => {
       </section>
 
       {/* ─── 6. Director's Message ───────────────── */}
-      <section className="director-section section-padding bg-soft" ref={directorRef}>
+      <section className="director-section bg-soft" ref={directorRef}>
         <div className={`container director-container ${directorVis ? 'dir-visible' : ''}`}>
-          <div className="director-image-wrapper sr-left">
+          <div className={`director-image-wrapper sr-left ${directorVis ? 'sr-visible' : ''}`}>
             <img
               src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
               alt="Director"
               className="director-img"
             />
           </div>
-          <div className="director-content sr-right">
+          <div className={`director-content sr-right ${directorVis ? 'sr-visible' : ''}`}>
             <span className="badge badge-accent">Leadership</span>
             <h2>Message from the Director</h2>
             <div className="quote-mark">"</div>
@@ -201,7 +200,7 @@ const Home = () => {
       </section>
 
       {/* ─── 7. Vision & Mission ───────────────────── */}
-      <section className="vision-mission-section section-padding" ref={vmRef}>
+      <section className="vision-mission-section" ref={vmRef}>
         <div className={`container sr-stagger ${vmVis ? 'sr-visible' : ''}`}>
           <div className="vm-grid">
             <div className="card vm-card vision-card sr-child">
@@ -224,7 +223,7 @@ const Home = () => {
       </section>
 
       {/* ─── 8. Why Choose DAV ─────────────────────── */}
-      <section className="features-section section-padding bg-soft" ref={featRef}>
+      <section className="features-section bg-soft" ref={featRef}>
         <div className={`container sr-stagger ${featVis ? 'sr-visible' : ''}`}>
           <h2 className="section-title sr-child">Why Choose DAV Civil Services?</h2>
           <div className="features-grid">

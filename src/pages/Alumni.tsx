@@ -38,11 +38,13 @@ const Alumni = () => {
 
   return (
     <div className="alumni-page">
-      <section className="page-hero"><div className="container"><h1>Alumni Corner</h1><p className="lead">Our Hall of Fame — celebrating the achievements of DAV Civil Services alumni.</p></div></section>
-
       <section className="section-padding">
         <div className="container">
-          <h2 className="section-title">Hall of Fame</h2>
+          <h1 className="page-title-center">Our Alumni</h1>
+          <p className="page-lead-center">
+            Our Hall of Fame — celebrating the achievements of DAV Civil Services alumni.
+          </p>
+
           <div className="filter-bar">
             <input className="form-control" placeholder="Search alumni by name..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ maxWidth: 300 }} />
             <select className="form-control filter-select" value={yearFilter} onChange={(e) => setYearFilter(e.target.value)}><option value="">All Years</option>{years.map((y) => <option key={String(y)} value={String(y)}>{y}</option>)}</select>
@@ -82,12 +84,38 @@ const Alumni = () => {
       <section className="section-padding">
         <div className="container">
           <h2 className="section-title">Where Are They Now?</h2>
-          <div className="card"><div className="table-responsive"><table className="table">
-            <thead><tr><th>Name</th><th>Year</th><th>Service</th><th>Current Designation</th><th>Current Posting</th><th>Cadre</th></tr></thead>
-            <tbody>{alumni.map((a) => (
-              <tr key={a.id}><td><strong>{a.name}</strong></td><td>{a.year}</td><td>{a.service}</td><td>{a.currentDesignation}</td><td>{a.currentPosting}</td><td>{a.cadre}</td></tr>
-            ))}</tbody>
-          </table></div></div>
+          {alumni.length === 0 ? (
+            <p className="text-muted" style={{ textAlign: 'center' }}>No alumni records available yet.</p>
+          ) : (
+            <div className="card alumni-now-card">
+              <div className="alumni-table-wrap">
+                <table className="alumni-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Year</th>
+                      <th>Service</th>
+                      <th>Current Designation</th>
+                      <th>Current Posting</th>
+                      <th>Cadre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {alumni.map((a) => (
+                      <tr key={a.id}>
+                        <td data-label="Name"><strong>{a.name}</strong></td>
+                        <td data-label="Year">{a.year || '—'}</td>
+                        <td data-label="Service">{a.service || '—'}</td>
+                        <td data-label="Current Designation">{a.currentDesignation || '—'}</td>
+                        <td data-label="Current Posting">{a.currentPosting || '—'}</td>
+                        <td data-label="Cadre">{a.cadre || '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>

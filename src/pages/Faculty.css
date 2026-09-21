@@ -1,8 +1,15 @@
-.filter-bar { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.filter-bar { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
 .filter-select { max-width: 250px; }
 .faculty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
 .faculty-card { text-align: center; }
 .faculty-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 4px solid var(--primary-lighter); }
+.faculty-photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  font-size: 2.5rem;
+}
 .faculty-card h3 { margin-bottom: 0.25rem; }
 .faculty-designation { color: var(--primary-light); font-weight: 600; font-size: 0.9rem; }
 .faculty-subject { color: var(--accent); font-weight: 700; margin: 0.5rem 0; }
