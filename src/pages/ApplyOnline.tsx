@@ -16,6 +16,14 @@ const ApplyOnline = () => {
   const prev = () => setStep((s) => Math.max(s - 1, 0));
 
   const payAndSubmit = async () => {
+    if (!form.fullName.trim()) {
+      setPayError('Full name is required.');
+      return;
+    }
+    if (!form.exam) {
+      setPayError('Target examination is required.');
+      return;
+    }
     setPaying(true);
     setPayError('');
     try {
@@ -29,8 +37,29 @@ const ApplyOnline = () => {
           phone: form.mobile,
         }),
       });
-      await payWithRazorpay(order, { name: form.fullName, email: form.email, contact: form.mobile });
-      setAppId('APP' + Date.now().toString().slice(-8));
+      const paid = await payWithRazorpay(order, { name: form.fullName, email: form.email, contact: form.mobile });
+      const data = await api<{ application: { applicationCode: string } }>('/api/public/applications', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: form.fullName,
+          dob: form.dob,
+          gender: form.gender,
+          phone: form.mobile,
+          email: form.email,
+          address: form.address,
+          district: form.district,
+          state: form.state,
+          tenth: form.tenth,
+          twelfth: form.twelfth,
+          degree: form.degree,
+          university: form.university,
+          percentage: form.percentage,
+          gradYear: form.gradYear,
+          program: form.exam,
+          paymentId: paid.id,
+        }),
+      });
+      setAppId(data.application.applicationCode);
       setSubmitted(true);
     } catch (err) {
       setPayError(err instanceof Error ? err.message : 'Payment was not completed.');
@@ -56,7 +85,7 @@ const ApplyOnline = () => {
     <div className="apply-page">
       <section className="section-padding">
         <div className="container">
-          <div className="stepper">{steps.map((s, i) => (
+          <div className="stepper">{steps.map((s: string, i: number) => (
             <div className={`step ${i === step ? 'active' : i < step ? 'completed' : ''}`} key={i}><div className="step-num">{i < step ? '✓' : i + 1}</div><div className="step-label">{s}</div></div>
           ))}</div>
 
