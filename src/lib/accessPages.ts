@@ -42,7 +42,7 @@ export const ADMIN_PAGES: PortalPage[] = [
   { key: 'mentors', path: '/admin/mentors', label: 'Mentors', icon: '👨‍🏫' },
   { key: 'academics', path: '/admin/academics', label: 'Academics', icon: '📚' },
   { key: 'attendance', path: '/admin/attendance', label: 'Attendance', icon: '✅' },
-  { key: 'scholarships', path: '/admin/scholarships', label: 'Scholarships', icon: '🎓' },
+  { key: 'scholarships', path: '/admin/scholarships', label: 'Materials & Results', icon: '📚' },
   { key: 'alumni', path: '/admin/alumni', label: 'Alumni', icon: '🏆' },
   { key: 'gallery', path: '/admin/gallery', label: 'Gallery', icon: '📸' },
   { key: 'news', path: '/admin/news', label: 'News', icon: '📰' },

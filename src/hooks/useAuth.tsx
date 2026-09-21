@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import { api } from '../lib/api';
 
-type Role = 'admin' | 'student' | 'staff';
+export type Role = 'admin' | 'student' | 'staff';
 
 interface User {
   id: number;

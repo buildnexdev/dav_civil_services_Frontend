@@ -333,10 +333,10 @@ const StudentAdmissionForm = ({
             {showLoginFields && (
               <>
                 <Field label="Portal username (optional)">
-                  <input className="form-control" value={form.username || ''} disabled={disabled} onChange={(e) => onChange('username', e.target.value)} />
+                  <input className="form-control" value={form.username || ''} disabled={disabled} onChange={(e) => onChange('username', e.target.value)} autoComplete="off" />
                 </Field>
                 <Field label="Portal password">
-                  <input type="password" className="form-control" value={form.password || ''} disabled={disabled} onChange={(e) => onChange('password', e.target.value)} />
+                  <input type="password" className="form-control" value={form.password || ''} disabled={disabled} onChange={(e) => onChange('password', e.target.value)} autoComplete="new-password" placeholder="Required with username; leave blank on edit to keep" />
                 </Field>
               </>
             )}

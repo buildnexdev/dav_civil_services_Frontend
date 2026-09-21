@@ -184,6 +184,7 @@ export function studentToFormData(student: Student, files: Partial<Record<FileFi
     if (skip.has(key)) return;
     const value = student[key];
     if (value === undefined || value === null) return;
+    if (value === '' && (key === 'username' || key === 'password')) return;
     data.append(String(key), typeof value === 'boolean' ? (value ? '1' : '0') : String(value));
   });
 

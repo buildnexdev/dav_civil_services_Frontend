@@ -1,16 +1,17 @@
 import { Navigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth, type Role } from '../hooks/useAuth';
 
 interface Props {
   children: ReactNode;
-  allowedRoles: ('admin' | 'student' | 'staff')[];
+  allowedRoles: Role[];
 }
 
 const ProtectedRoute = ({ children, allowedRoles }: Props) => {
   const { user, isAuthenticated } = useAuth();
-  
+
   if (!isAuthenticated) return <Navigate to="/login" replace />;
+
   if (!allowedRoles.includes(user!.role)) {
     return (
       <div style={{ padding: '4rem', textAlign: 'center' }}>
@@ -19,6 +20,7 @@ const ProtectedRoute = ({ children, allowedRoles }: Props) => {
       </div>
     );
   }
+
   return <>{children}</>;
 };
 

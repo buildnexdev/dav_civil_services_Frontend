@@ -178,7 +178,7 @@ const AdminStudents = () => {
                 form={form}
                 files={files}
                 readOnly={mode === 'view'}
-                showLoginFields={mode === 'add'}
+                showLoginFields={mode === 'add' || mode === 'edit'}
                 onChange={onChange}
                 onFile={(field, file) => setFiles((prev) => ({ ...prev, [field]: file }))}
               />

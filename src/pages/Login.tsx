@@ -71,6 +71,7 @@ const Login = () => {
                   placeholder="Enter your username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  autoComplete="username"
                   required
                 />
               </div>
@@ -84,6 +85,7 @@ const Login = () => {
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password"
                     required
                   />
                   <button
@@ -118,13 +120,6 @@ const Login = () => {
               <button type="submit" className="btn btn-primary w-100 btn-login">Sign In</button>
             </form>
           )}
-
-          <div className="demo-credentials">
-            <p className="demo-title">Default Admin Login:</p>
-            <div className="demo-grid">
-              <div className="demo-item"><span className="demo-role">Admin</span> admin / Admin@123</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

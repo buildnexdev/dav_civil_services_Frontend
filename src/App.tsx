@@ -33,7 +33,7 @@ const AdminAdmissions = lazy(() => import('./pages/admin/AdminAdmissions'));
 const AdminMentors = lazy(() => import('./pages/admin/AdminMentors'));
 const AdminAcademics = lazy(() => import('./pages/admin/AdminAcademics'));
 const AdminAttendance = lazy(() => import('./pages/admin/AdminAttendance'));
-const AdminScholarshipsPage = lazy(() => import('./pages/admin/AdminPages').then(m => ({ default: m.AdminScholarshipsPage })));
+const AdminScholarshipsPage = lazy(() => import('./pages/admin/AdminLearningContent'));
 const AdminAlumni = lazy(() => import('./pages/admin/AdminAlumni'));
 const AdminGallery = lazy(() => import('./pages/admin/AdminGallery'));
 const AdminNews = lazy(() => import('./pages/admin/AdminNews'));

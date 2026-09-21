@@ -50,11 +50,11 @@ const emptyMentor: Mentor = {
 
 function mentorToFormData(mentor: Mentor, photo: File | null) {
   const data = new FormData();
-  const skip = new Set(['id', 'photo', 'updatedAt']);
+  const skip = new Set(['id', 'photo', 'updatedAt', 'userId']);
   (Object.keys(mentor) as (keyof Mentor)[]).forEach((key) => {
     if (skip.has(key)) return;
     const value = mentor[key];
-    if (value === undefined || value === null) return;
+    if (value === undefined || value === null || value === '') return;
     data.append(String(key), String(value));
   });
   if (photo) data.append('photo', photo);
@@ -319,15 +319,20 @@ const AdminMentors = () => {
                     <p className="adm-hint" style={{ marginTop: '0.5rem' }}>No photo uploaded</p>
                   )}
                 </div>
-                {mode === 'add' && (
+                {(mode === 'add' || mode === 'edit') && (
                   <>
-                    <div className="form-group">
-                      <label>Portal username (optional)</label>
-                      <input className="form-control" value={form.username || ''} onChange={(e) => onChange('username', e.target.value)} />
+                    <div className="form-group student-span-2">
+                      <p className="adm-hint" style={{ margin: 0 }}>
+                        Portal login — saved to the users table with the Mentor (staff) role. Leave blank on edit to keep the current login.
+                      </p>
                     </div>
                     <div className="form-group">
-                      <label>Portal password</label>
-                      <input type="password" className="form-control" value={form.password || ''} onChange={(e) => onChange('password', e.target.value)} />
+                      <label>Portal username {mode === 'add' ? '(optional)' : ''}</label>
+                      <input className="form-control" value={form.username || ''} onChange={(e) => onChange('username', e.target.value)} autoComplete="off" />
+                    </div>
+                    <div className="form-group">
+                      <label>Portal password {mode === 'edit' ? '(leave blank to keep)' : ''}</label>
+                      <input type="password" className="form-control" value={form.password || ''} onChange={(e) => onChange('password', e.target.value)} autoComplete="new-password" />
                     </div>
                   </>
                 )}

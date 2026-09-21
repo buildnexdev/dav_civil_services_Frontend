@@ -1,4 +1,4 @@
-import { Navigate, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAccess, usePortalPages } from '../hooks/useAccess';
 import { isPageAllowed, pagesForRole } from '../lib/accessPages';
@@ -8,6 +8,7 @@ interface Props { role: 'admin' | 'student' | 'staff'; }
 
 const DashboardLayout = ({ role }: Props) => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const { allowedKeys } = useAccess();
   const links = usePortalPages(role);
   const location = useLocation();
@@ -18,6 +19,11 @@ const DashboardLayout = ({ role }: Props) => {
   }
 
   const panelLabel = role === 'staff' ? 'MENTOR' : role.toUpperCase();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <div className="dashboard-layout">
@@ -50,7 +56,7 @@ const DashboardLayout = ({ role }: Props) => {
           <div className="dash-topbar-right">
             <span className="dash-notif">🔔</span>
             <span className="dash-user">{user?.username}</span>
-            <button className="btn btn-outline btn-sm" onClick={logout}>Logout</button>
+            <button className="btn btn-outline btn-sm" onClick={handleLogout}>Logout</button>
           </div>
         </header>
         <div className="dash-content"><Outlet /></div>
