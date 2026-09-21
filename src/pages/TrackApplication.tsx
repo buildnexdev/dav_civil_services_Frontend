@@ -52,12 +52,6 @@ const TrackApplication = () => {
 
   return (
     <div className="track-page">
-      <section className="page-hero">
-        <div className="container">
-          <h1>Track Application</h1>
-          <p className="lead">Enter your application details to check the current status.</p>
-        </div>
-      </section>
       <section className="section-padding">
         <div className="container">
           {loading ? (

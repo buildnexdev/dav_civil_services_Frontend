@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ZOHO_APPLY_URL, CONTACT_INFO } from '../constants/links';
 import davLogo from '../assets/dav-group-logo.jpg';
 import vedritamLogo from '../assets/vedritam-logo.jpg';
 import './Footer.css';
@@ -31,7 +32,7 @@ const Footer = () => (
           <h4 className="footer-title">Admissions</h4>
           <div className="footer-links">
             <Link to="/admissions">Information</Link>
-            <Link to="/admissions/apply">Apply Online</Link>
+            <a href={ZOHO_APPLY_URL} target="_blank" rel="noopener noreferrer">Apply Online</a>
             <Link to="/admissions/track">Track Application</Link>
             <Link to="/scholarship">Scholarships</Link>
           </div>
@@ -46,11 +47,17 @@ const Footer = () => (
           </div>
         </div>
         <div>
-          <h4 className="footer-title">Contact</h4>
+          <h4 className="footer-title">Contact Us</h4>
           <div className="footer-contact">
-            <p>Anna Nagar, Chennai, Tamil Nadu</p>
-            <p>+91 98765 43210</p>
-            <p>info@davcivilservices.edu</p>
+            <p className="footer-address">
+              📍 {CONTACT_INFO.fullAddress}
+            </p>
+            <p className="footer-phone">
+              📞 <a href={`tel:${CONTACT_INFO.phone}`}>{CONTACT_INFO.displayPhone}</a>
+            </p>
+            <p className="footer-email">
+              ✉️ <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
+            </p>
           </div>
           <div className="social-links">
             <button type="button" className="social-icon" aria-label="Facebook">f</button>
@@ -61,9 +68,12 @@ const Footer = () => (
         </div>
       </div>
       <div className="footer-bottom">
-        <p>
-          © 2026 DAV Civil Services Residential Program • Vedritam. All rights reserved.
-        </p>
+        <div className="footer-bottom-inner">
+          <p>© 2026 DAV Civil Services Residential Program • Vedritam. All rights reserved.</p>
+          <p className="developed-by">
+            Developed by <a href={CONTACT_INFO.developerUrl} target="_blank" rel="noopener noreferrer" className="dev-link">{CONTACT_INFO.developerName}</a>
+          </p>
+        </div>
       </div>
     </div>
   </footer>
