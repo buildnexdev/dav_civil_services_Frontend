@@ -46,7 +46,10 @@ export function loadRazorpay(): Promise<NonNullable<Window['Razorpay']>> {
   });
 }
 
-export async function payWithRazorpay(order: RazorpayOrderResponse, prefill: CheckoutPrefill = {}) {
+export async function payWithRazorpay(
+  order: RazorpayOrderResponse,
+  prefill: CheckoutPrefill = {}
+): Promise<RazorpayOrderResponse['payment']> {
   const RazorpayCheckout = await loadRazorpay();
   return new Promise((resolve, reject) => {
     const checkout = new RazorpayCheckout({

@@ -102,7 +102,6 @@ const AdminPayments = () => {
         }),
       });
       const paid = await payWithRazorpay(order);
-      setPayments((prev) => [paid as Payment, ...prev.filter((p) => p.id !== paid.id)]);
       setNotice(`Payment ${paid.paymentCode} completed via Razorpay.`);
       await load(search, statusFilter);
     } catch (err) {

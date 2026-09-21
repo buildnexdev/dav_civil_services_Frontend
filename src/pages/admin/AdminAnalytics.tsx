@@ -75,7 +75,7 @@ const AdminAnalytics = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5DCD2" />
                   <XAxis dataKey="name" />
                   <YAxis />
-                  <Tooltip formatter={(value: number) => tick(value)} />
+                  <Tooltip formatter={(value) => tick(Number(value) || 0)} />
                   <Bar dataKey="value" name={money ? 'Amount' : 'Count'} fill="#5C4030" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
@@ -89,7 +89,7 @@ const AdminAnalytics = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5DCD2" />
                   <XAxis dataKey="name" />
                   <YAxis />
-                  <Tooltip formatter={(value: number) => tick(value)} />
+                  <Tooltip formatter={(value) => tick(Number(value) || 0)} />
                   <Bar dataKey="value" name={money ? 'Amount' : 'Count'} fill="#3D7A5A" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
